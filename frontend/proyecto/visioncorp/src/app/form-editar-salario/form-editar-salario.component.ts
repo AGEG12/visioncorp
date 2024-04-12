@@ -19,14 +19,13 @@ export class FormEditarSalarioComponent {
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private route: ActivatedRoute, private router: Router) {
     this.formulario = this.fb.group({
-      salarioBase: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{2})?$/)]],
-      bonificaciones: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{2})?$/)]],
-      comisiones: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{2})?$/)]],
-      estadoPago: ['', Validators.required],
-      fechaIngreso: [this.obtenerFechaActual(), Validators.required]
+      salarioDiario: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{2})?$/)]],
+      aguinaldo: ['', [Validators.required, Validators.pattern(/^([0-9])*$/)]],
+      primaVacacional: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{2})?$/)]],
+      diasVacaciones: ['', [Validators.required, Validators.pattern(/^([0-9])*$/)]],
+      salarioIntegrado: [''],
+      fechaActualizacion: [this.obtenerFechaActual(), Validators.required]
     });
-
-
   }
 
   ngOnInit() {
@@ -35,10 +34,11 @@ export class FormEditarSalarioComponent {
       this.apiService.obtenerSalarioPorId(id).subscribe(salario => {
         this.salario = salario;
         this.formulario.patchValue({
-          salarioBase: salario.salarioBase,
-          bonificaciones: salario.bonificaciones,
-          comisiones: salario.comisiones,
-          estadoPago: salario.estadoPago,
+          salarioDiario: salario.salarioDiario,
+          aguinaldo: salario.aguinaldo,
+          primaVacacional: salario.primaVacacional,
+          diasVacaciones: salario.diasVacaciones,
+          salarioIntegrado: salario.salarioIntegrado
         });
       });
 
@@ -51,19 +51,21 @@ export class FormEditarSalarioComponent {
       const idEmpleado = this.route.snapshot.params['id']
       console.log(id);
 
-
-      const salarioBase = parseFloat(this.formulario.value.salarioBase);
-      const bonificaciones = parseFloat(this.formulario.value.bonificaciones);
-      const comisiones = parseFloat(this.formulario.value.comisiones);
+      const salarioDiario = parseFloat(this.formulario.value.salarioDiario);
+      const aguinaldo = parseInt(this.formulario.value.aguinaldo);
+      const primaVacacional = parseFloat(this.formulario.value.primaVacacional);
+      const diasVacaciones = parseInt(this.formulario.value.diasVacaciones);
+      let salarioIntegrado = salarioDiario * ((aguinaldo/365)+((diasVacaciones*primaVacacional)/365)+1);
 
       const salarioEditado = {
         id: id,
         EmpleadoID: idEmpleado,
         fechaIngreso: this.formulario.value.fechaIngreso,
-        salarioBase: salarioBase,
-        bonificaciones: bonificaciones,
-        comisiones: comisiones,
-        estadoPago: this.formulario.value.estadoPago,
+        salarioDiario: salarioDiario,
+        aguinaldo: aguinaldo,
+        primaVacacional: primaVacacional,
+        diasVacaciones: diasVacaciones,
+        salarioIntegrado: salarioIntegrado
       };
 
 

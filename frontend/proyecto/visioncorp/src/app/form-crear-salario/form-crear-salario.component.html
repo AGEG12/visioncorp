@@ -51,7 +51,7 @@
                             <input type="text" id="primaVacacional" formControlName="primaVacacional" class="form-control" placeholder="Ejemplo: 0.25" required>
                             <div class="pt-1"
                                 *ngIf="formulario.get('primaVacacional')?.invalid && (formulario.get('primaVacacional')?.dirty || formulario.get('primaVacacional')?.touched)">
-                                <div *ngIf="formulario.get('primaVacacional')?.hasError('required')" class="alert alert-danger">La Prima Vacacional es obligatoria. </div>
+                                <div *ngIf="formulario.get('primaVacacional')?.hasError('required')" class="alert alert-danger">La Prima Vacacional es obligatoria.</div>
                                 <div *ngIf="formulario.get('primaVacacional')?.hasError('pattern')" class="alert alert-danger">La Prima Vacacional debe ser un número decimal de 2 dígitos entre 0 y 1.</div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                             <input type="text" id="diasVacaciones" formControlName="diasVacaciones" class="form-control" placeholder="Ejemplo: 12"  required>
                             <div class="pt-1"
                                 *ngIf="formulario.get('diasVacaciones')?.invalid && (formulario.get('diasVacaciones')?.dirty || formulario.get('diasVacaciones')?.touched)">
-                                <div *ngIf="formulario.get('diasVacaciones')?.hasError('required')" class="alert alert-danger">Las Vacaciones es obligatorio </div>
+                                <div *ngIf="formulario.get('diasVacaciones')?.hasError('required')" class="alert alert-danger">Las Vacaciones son obligatorias</div>
                                 <div *ngIf="formulario.get('diasVacaciones')?.hasError('pattern')" class="alert alert-danger">Las Vacaciones debe ser un número entero. </div>
                             </div>
                         </div>
