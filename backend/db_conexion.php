@@ -9,7 +9,7 @@ header('Content-Type: application/json; charset=UFT-8');
 //Conexión a la base de datos
 $host = 'localhost';
 $username = 'root';
-$password = 'root'; 
+$password = ''; 
 $db_name = 'visioncorp';
 $mysqli = new mysqli($host, $username, $password, $db_name);
 

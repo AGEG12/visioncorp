@@ -22,7 +22,7 @@ export class DetalleEmpleadoComponent {
     Nombre: '',
     Apellido: '',
     Edad: 0,
-    CorreoElectronico: '',
+    correoElectronico: '',
     Telefono: '',
     Puesto: '',
     Departamento: '',

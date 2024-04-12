@@ -6,7 +6,7 @@ id: any;
         public Nombre: string,
         public Apellido: string,
         public Edad: number,
-        public CorreoElectronico: string,
+        public correoElectronico: string,
         public Telefono: string,
         public Puesto: string,
         public Departamento: string,

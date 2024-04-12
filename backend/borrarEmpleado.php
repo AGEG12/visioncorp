@@ -17,6 +17,18 @@ if(isset($AngularData) && !empty($AngularData)){
     $resultado_delete_documentos = mysqli_stmt_execute($stmt_delete_documentos);
     mysqli_stmt_close($stmt_delete_documentos);
 
+    $sql_delete_salarios = "DELETE FROM salarios WHERE EmpleadoID = ?";
+    $stmt_delete_salarios = mysqli_prepare($mysqli, $sql_delete_salarios);
+    mysqli_stmt_bind_param($stmt_delete_salarios, "i", $EmpleadoID);
+    $resultado_delete_salarios = mysqli_stmt_execute($stmt_delete_salarios);
+    mysqli_stmt_close($stmt_delete_salarios);
+
+    $sql_delete_historial = "DELETE FROM historialSalario WHERE EmpleadoID = ?";
+    $stmt_delete_historial = mysqli_prepare($mysqli, $sql_delete_historial);
+    mysqli_stmt_bind_param($stmt_delete_historial, "i", $EmpleadoID);
+    $resultado_delete_historial = mysqli_stmt_execute($stmt_delete_historial);
+    mysqli_stmt_close($stmt_delete_historial);
+
     
     $sql = "DELETE FROM empleado WHERE EmpleadoID = ?";
     $stmt = mysqli_prepare($mysqli, $sql);

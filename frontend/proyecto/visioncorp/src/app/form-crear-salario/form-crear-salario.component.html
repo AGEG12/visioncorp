@@ -1,0 +1,89 @@
+<app-barra-nav></app-barra-nav>
+<div class="m-3">
+    <button class="btn regresar" routerLink="/salarios">
+        <div class="d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left me-2" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+            </svg>
+            <p class="m-0">Regresar al listado</p>
+        </div>
+    </button>
+</div>
+<div class="container-sm mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="alert alert-info">
+                El botón para crear el registro de salario se habilitará una vez que todos los campos del formulario se completen correctamente.
+            </div>
+            <div class="card p-4 rounded">
+                <div class="d-flex justify-content-center mb-2">
+                    <h2>Datos de registro de sueldos</h2>
+                </div>
+                <form (ngSubmit)="crearSalario()" [formGroup]="formulario">
+                    <div *ngIf="formulario.invalid && (formulario.dirty || formulario.touched)" class="alert alert-danger">
+                        Por favor, completa correctamente todos los campos del formulario.
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="salarioDiario">Salario diario:</label>
+                            <input type="text" id="salarioDiario" formControlName="salarioDiario" class="form-control" placeholder="Ejemplo: 275.00" required>
+                            <div class="pt-1"
+                                *ngIf="formulario.get('salarioDiario')?.invalid && (formulario.get('salarioDiario')?.dirty || formulario.get('salarioDiario')?.touched)">
+                                <div *ngIf="formulario.get('salarioDiario')?.hasError('required')" class="alert alert-danger">El salario diario es 
+                                    obligatorio</div>
+                                <div *ngIf="formulario.get('salarioDiario')?.hasError('pattern')" class="alert alert-danger">El salario base debe ser un número decimal con dos dígitos después del punto. </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="aguinaldo">Aguinaldo (Días):</label>
+                            <input type="text" id="aguinaldo" formControlName="aguinaldo" class="form-control" placeholder="Ejemplo: 15"  required>
+                            <div class="pt-1"
+                                *ngIf="formulario.get('aguinaldo')?.invalid && (formulario.get('aguinaldo')?.dirty || formulario.get('aguinaldo')?.touched)">
+                                <div *ngIf="formulario.get('aguinaldo')?.hasError('required')" class="alert alert-danger">El aguinaldo es obligatorio </div>
+                                <div *ngIf="formulario.get('aguinaldo')?.hasError('pattern')" class="alert alert-danger">El aguinaldo debe ser un número entero. </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="primaVacacional">Prima vacacional (decimales):</label>
+                            <input type="text" id="primaVacacional" formControlName="primaVacacional" class="form-control" placeholder="Ejemplo: 0.25" required>
+                            <div class="pt-1"
+                                *ngIf="formulario.get('primaVacacional')?.invalid && (formulario.get('primaVacacional')?.dirty || formulario.get('primaVacacional')?.touched)">
+                                <div *ngIf="formulario.get('primaVacacional')?.hasError('required')" class="alert alert-danger">La Prima Vacacional es obligatoria. </div>
+                                <div *ngIf="formulario.get('primaVacacional')?.hasError('pattern')" class="alert alert-danger">La Prima Vacacional debe ser un número decimal de 2 dígitos entre 0 y 1.</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="diasVacaciones">Vacaciones (Días):</label>
+                            <input type="text" id="diasVacaciones" formControlName="diasVacaciones" class="form-control" placeholder="Ejemplo: 12"  required>
+                            <div class="pt-1"
+                                *ngIf="formulario.get('diasVacaciones')?.invalid && (formulario.get('diasVacaciones')?.dirty || formulario.get('diasVacaciones')?.touched)">
+                                <div *ngIf="formulario.get('diasVacaciones')?.hasError('required')" class="alert alert-danger">Las Vacaciones es obligatorio </div>
+                                <div *ngIf="formulario.get('diasVacaciones')?.hasError('pattern')" class="alert alert-danger">Las Vacaciones debe ser un número entero. </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="fechaActualizacion">Fecha de actualización:</label>
+                        <input type="date" id="fechaActualizacion" formControlName="fechaActualizacion" class="form-control" required>
+                        <div class="pt-1" *ngIf="formulario.get('fechaActualizacion')?.invalid && (formulario.get('fechaActualizacion')?.dirty || formulario.get('fechaActualizacion')?.touched)">
+                            <div *ngIf="formulario.get('fechaActualizacion')?.hasError('required')" class="alert alert-danger">La fecha de actualización es obligatoria.</div>
+                        </div>
+                    </div>
+                    
+            
+
+            
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" [disabled]="!formulario.valid" class="btn btn1">Crear registro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>

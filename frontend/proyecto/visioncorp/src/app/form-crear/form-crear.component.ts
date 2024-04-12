@@ -17,7 +17,7 @@ export class FormCrearComponent {
       Nombre: ['', [Validators.required, Validators.minLength(3)]],
       Apellido: ['', [Validators.required, Validators.minLength(3)]],
       Edad: ['', [Validators.required, Validators.pattern(/^\d{2}$/)]],
-      CorreoElectronico: ['', [Validators.required, Validators.email]],
+      correoElectronico: ['', [Validators.required, Validators.email]],
       Telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       Puesto: ['', [Validators.required]],
       Departamento: ['', [Validators.required]],
